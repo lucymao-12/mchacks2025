@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import routes from "./routes/index.js";
 
 dotenv.config();
 
@@ -19,9 +20,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection failed:", err));
 
-app.get("/api", (req, res) => {
-  res.send("API is running...");
-});
+app.use("/", routes); // Load the main routes file
 
 const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
