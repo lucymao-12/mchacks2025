@@ -1,5 +1,5 @@
 import express from "express";
-import mapRoutes from "./google_map.js";
+import mapRoutes from "./googleMapController.js";
 const router = express.Router();
 
 const apiString = "/api";
