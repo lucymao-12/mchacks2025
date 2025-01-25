@@ -1,7 +1,21 @@
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
-  return <div className="App">Test</div>;
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("/")
+      .then((response) => setMessage(response.data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>{message}</h1>
+    </div>
+  );
 }
 
 export default App;
