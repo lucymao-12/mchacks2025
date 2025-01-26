@@ -29,7 +29,13 @@ router.get("/geocodeCity", (req, res) => {
 router.get("/getLocationImage", (req, res) => {
   googleMapService
     .findCoordFromCityName(req.query.city)
-    .then((url) => console.log(url) || res.json({ url }))
+    .then((url) => {
+      if (url === "") {
+        return res.status(404).json({ error: "City not found" });
+      } else {
+        return res.json({ url });
+      }
+    })
     .catch((error) => res.status(500).json({ error: error.message }));
 });
 

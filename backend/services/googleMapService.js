@@ -6,7 +6,7 @@ async function findCoordFromCityName(cityName) {
     const response = await axios.get(geocodeUrl);
     const { results } = response.data;
     if (results.length === 0) {
-      return Error("No results found");
+      return "";
     }
     const { lat, lng } = results[0].geometry.location;
     const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=12&size=600x300&key=${process.env.GOOGLE_API_KEY}`;
